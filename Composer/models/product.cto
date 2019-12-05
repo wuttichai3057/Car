@@ -1,0 +1,40 @@
+/**
+/**
+ * Defines a data model for a product auction
+ */
+namespace org.acme.product.auction
+
+asset Car identified by carId {
+  o String carId
+  o String brand
+  o String model
+  o Double Engine_size
+  --> UserCar owner
+}
+
+participant UserCar identified by userID {
+  o String userID
+  o String firstName
+  o String lastName
+  o Car[] cars optional
+}
+
+
+event SummitCar {
+  o String carid
+  o String brand
+  o String model
+  o Double Engine_size
+  o String userID
+  o String firstName
+  o String lastName
+}
+
+/**
+ * Transactions performed on network
+ */
+
+transaction Transfer {
+  --> Car carid
+  --> UserCar userid
+}
